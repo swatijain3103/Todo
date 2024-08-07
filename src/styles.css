@@ -1,0 +1,27 @@
+/* You can add global styles to this file, and also import other style files */
+@import "primeicons/primeicons.css";
+
+html,
+body {
+  height: 100%;
+}
+
+.todo-complete {
+  text-decoration: line-through;
+}
+
+i {
+  padding: 20px;
+}
+:host ::ng-deep .p-button{
+  font-size:100px;
+}
+
+.p-button-sm {
+  padding: 5px;
+}
+
+.form-errors {
+  color: red;
+}
+

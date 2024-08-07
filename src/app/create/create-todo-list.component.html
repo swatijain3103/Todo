@@ -1,0 +1,38 @@
+<div class="flex flex-column align-items-center justify-content-center">
+
+<p-card header="Todo" class="w-6"> 
+    <div class="m-2 flex">
+        <div>
+            <input type="text" #description="ngModel" pInputText [(ngModel)]="newTodo.description" placeholder="Enter new todo" class="form-control"
+            name="description" required pattern="^[a-zA-Z0-9 ]*$">
+            <div *ngIf="description.errors?.['pattern']" class = "form-errors">Special characters are not allowed</div>
+        </div>
+        <p-button [disabled]="!newTodo.description" icon="pi pi-check" class="ml-1" (click)="onCheck()"></p-button>
+    </div>
+    <p>
+        <p-table [value]="todos">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th width="60%">Task</th>
+                    <th width="60%">CreatedDate</th>
+                    <th>Completed</th>
+                    <th></th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-todo>
+                <tr>
+                    <td [ngClass]="{'todo-complete': todo.isCompleted}">{{todo.description}}</td>
+                    <td>{{todo.createdDate | date: 'MM/dd/yyyy hh:mm a'}}</td>
+                    <td><p-checkbox 
+                        [(ngModel)]="todo.isCompleted"
+                        [binary]="true" 
+                        inputId="binary"
+                        (change)="OnCompletedChange(todo.id, todo)"  />
+                    </td>
+                    <td><p-button icon="pi pi-trash" styleClass="p-button-danger" (onClick)="deleteTodo(todo.id)"></p-button></td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </p>
+</p-card>
+</div>
